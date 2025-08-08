@@ -23,6 +23,7 @@
         </h2>
         <p class="text-sm text-gray-400">Welkome beck freinds!</p>
       </div>
+      <a href="{% url 'quiz_history' %}" class="btn btn-link">📜 Riwayat</a>
 
       <!-- Logout Form -->
       <form method="post" action="{% url 'logout' %}" class="mt-6">
@@ -71,7 +72,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {% for quiz in quizzes %}
       <a
-        href="{% url 'start_quiz' quiz.id %}"
+        href="{% url 'quiz_detail' quiz.id %}"
         class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
       >
         <div class="card-body">

@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<div class="max-w-md mx-auto card bg-base-200 p-6 shadow-xl text-center">
+  <h2 class="text-2xl font-bold mb-4">🎉 Quiz Completed!</h2>
+  <p class="text-lg mb-2">Quiz: <strong>{{ quiz.title }}</strong></p>
+  <p class="text-4xl font-bold text-primary my-4">{{ score }}%</p>
+  <p>Kamu menjawab benar {{ correct }} dari {{ total }} soal.</p>
+
+  <a href="{% url 'quiz_list' %}" class="btn btn-outline btn-primary mt-6"
+    >Kembali ke daftar quiz</a
+  >
+</div>
+{% endblock %}
