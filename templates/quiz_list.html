@@ -66,62 +66,27 @@
   {% if user.is_authenticated %}
   <div class="mt-8">
     <h3 class="text-xl font-semibold text-center text-gray-100 mb-4">
-      Pilih Kuis
+      Available Quizzes
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% for quiz in quizzes %}
       <a
         href="#"
         class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
       >
         <div class="card-body">
-          <h4 class="card-title text-primary">📘 Matematika Dasar</h4>
-          <p class="text-gray-300">10 soal • Menengah</p>
+          <h4 class="card-title text-primary">{{ quiz.title }}</h4>
+          <p class="text-gray-500">{{ quiz.description }}</p>
           <div class="card-actions justify-end">
-            <span class="badge badge-primary">Baru</span>
+            <span class="badge badge-primary">{{ quiz.badge }}</span>
           </div>
         </div>
       </a>
-
-      <a
-        href="#"
-        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
-      >
-        <div class="card-body">
-          <h4 class="card-title text-accent">🌍 Geografi Dunia</h4>
-          <p class="text-gray-300">15 soal • Mudah</p>
-          <div class="card-actions justify-end">
-            <span class="badge badge-accent">Populer</span>
-          </div>
-        </div>
-      </a>
-
-      <a
-        href="#"
-        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
-      >
-        <div class="card-body">
-          <h4 class="card-title text-info">🔬 Sains Umum</h4>
-          <p class="text-gray-300">12 soal • Sulit</p>
-          <div class="card-actions justify-end">
-            <span class="badge badge-ghost text-info border-info"
-              >Challenge</span
-            >
-          </div>
-        </div>
-      </a>
-
-      <a
-        href="#"
-        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
-      >
-        <div class="card-body">
-          <h4 class="card-title text-secondary">📜 Sejarah Indonesia</h4>
-          <p class="text-gray-300">20 soal • Sedang</p>
-          <div class="card-actions justify-end">
-            <span class="badge badge-info">Belajar</span>
-          </div>
-        </div>
-      </a>
+      {% empty %}
+      <div class="col-span-full flex items-center justify-center py-8">
+        <p class="text-center text-gray-400">No quizzes available.</p>
+      </div>
+      {% endfor %}
     </div>
   </div>
   {% endif %}

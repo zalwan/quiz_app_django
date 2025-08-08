@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import RegisterForm
+from .models import Quiz
 
 
 def register_view(request):
@@ -18,5 +19,6 @@ def register_view(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def quiz_list_view(request):
-    return render(request, 'quiz_list.html')
+def quiz_list(request):
+    quizzes = Quiz.objects.all()
+    return render(request, 'quiz_list.html', {'quizzes': quizzes})
