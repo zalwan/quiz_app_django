@@ -1,12 +1,129 @@
-<h1>Welcome to the Quiz App!</h1>
-{% if user.is_authenticated %}
-<p>Halo, {{ user.username }}</p>
-<form method="post" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">Logout</button>
-</form>
-{% else %}
-<p>Kamu belum login.</p>
-<a href="{% url 'login' %}">Login</a>
-<a href="{% url 'register' %}">Register</a>
-{% endif %}
+{% extends "base.html" %} {% block content %}
+<div class="max-w-3xl w-full mx-auto">
+  <!-- Header -->
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-primary">Welcome to the Quiz App! 🎯</h1>
+    <p class="text-gray-300 mt-2">Test your knowledge and become the best!</p>
+  </div>
+
+  <!-- User Info Card -->
+  <div class="card bg-base-100 shadow-xl border border-gray-700">
+    <div class="card-body">
+      {% if user.is_authenticated %}
+      <div class="flex flex-col items-center text-center mb-6">
+        <div class="avatar avatar-online avatar-placeholder mb-2">
+          <div class="bg-primary text-neutral-content w-16 rounded-full">
+            <span class="text-xl font-bold"
+              >{{ user.username|first|upper }}</span
+            >
+          </div>
+        </div>
+        <h2 class="text-xl font-semibold text-gray-500">
+          Halo, <span class="text-primary">{{ user.username }}</span>
+        </h2>
+        <p class="text-sm text-gray-400">Welkome beck freinds!</p>
+      </div>
+
+      <!-- Logout Form -->
+      <form method="post" action="{% url 'logout' %}" class="mt-6">
+        {% csrf_token %}
+        <button
+          type="submit"
+          class="btn btn-outline btn-accent w-full hover:shadow-lg transition"
+        >
+          🔌 Logout
+        </button>
+      </form>
+
+      {% else %}
+      <!-- Guest Message -->
+      <div class="text-center">
+        <h2 class="text-xl font-semibold text-red-400 mb-4">
+          You are not logged in
+        </h2>
+        <p class="text-gray-400 mb-6">
+          Please login or register to access the quiz.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a
+            href="{% url 'login' %}"
+            class="btn btn-primary text-white w-full sm:w-auto"
+            >Login</a
+          >
+          <a
+            href="{% url 'register' %}"
+            class="btn btn-outline btn-secondary w-full sm:w-auto"
+            >Register</a
+          >
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Quiz List Section -->
+  {% if user.is_authenticated %}
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold text-center text-gray-100 mb-4">
+      Pilih Kuis
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <a
+        href="#"
+        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
+      >
+        <div class="card-body">
+          <h4 class="card-title text-primary">📘 Matematika Dasar</h4>
+          <p class="text-gray-300">10 soal • Menengah</p>
+          <div class="card-actions justify-end">
+            <span class="badge badge-primary">Baru</span>
+          </div>
+        </div>
+      </a>
+
+      <a
+        href="#"
+        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
+      >
+        <div class="card-body">
+          <h4 class="card-title text-accent">🌍 Geografi Dunia</h4>
+          <p class="text-gray-300">15 soal • Mudah</p>
+          <div class="card-actions justify-end">
+            <span class="badge badge-accent">Populer</span>
+          </div>
+        </div>
+      </a>
+
+      <a
+        href="#"
+        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
+      >
+        <div class="card-body">
+          <h4 class="card-title text-info">🔬 Sains Umum</h4>
+          <p class="text-gray-300">12 soal • Sulit</p>
+          <div class="card-actions justify-end">
+            <span class="badge badge-ghost text-info border-info"
+              >Challenge</span
+            >
+          </div>
+        </div>
+      </a>
+
+      <a
+        href="#"
+        class="card card-bordered bg-base-100 hover:shadow-lg transition transform hover:-translate-y-1 cursor-pointer"
+      >
+        <div class="card-body">
+          <h4 class="card-title text-secondary">📜 Sejarah Indonesia</h4>
+          <p class="text-gray-300">20 soal • Sedang</p>
+          <div class="card-actions justify-end">
+            <span class="badge badge-info">Belajar</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
